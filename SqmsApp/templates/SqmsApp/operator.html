@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>پنل اپراتور</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Operator Dashboard
+    </div>
+
+    <h1>پنل اپراتور</h1>
+
+    <div class="counter-card">
+        <div>افراد منتظر</div>
+        <div class="counter-number" id="waiting_count">
+            {{ waiting_count }}
+        </div>
+    </div>
+
+    <div id="next_ticket_box">
+
+        {% if next_ticket %}
+
+            <div class="operator-ticket">
+                A-{{ next_ticket.ticket_number }}
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit">
+                    فراخوانی نوبت بعدی
+                </button>
+            </form>
+
+        {% else %}
+
+            <p class="empty">
+                صف خالی است
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<script>
+const socket = new WebSocket(
+    "ws://127.0.0.1:8001/ws/queue/global/"
+);
+
+socket.onmessage = function(event) {
+
+    const data = JSON.parse(event.data);
+
+    if(data.waiting !== undefined){
+        document.getElementById("waiting_count").innerText =
+            data.waiting;
+    }
+};
+</script>
+
+</body>
+</html>

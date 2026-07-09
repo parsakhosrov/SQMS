@@ -1,0 +1,126 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,sans-serif;
+}
+
+body{
+    direction:rtl;
+    background: #98b6ef;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.logo{
+    font-size:20px;
+    color:#0f4c81;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+h1{
+    color:#0f4c81;
+    margin-bottom:25px;
+}
+
+.ticket-number{
+    font-size:60px;
+    font-weight:bold;
+    color:#0f4c81;
+    margin:20px 0;
+}
+
+.status-box{
+    background:#f8fafc;
+    border:1px solid #e3e8ef;
+    border-radius:15px;
+    padding:20px;
+    margin-top:20px;
+}
+
+.info{
+    font-size:18px;
+    margin:15px 0;
+}
+
+.value{
+    color:#0f4c81;
+    font-weight:bold;
+    font-size:24px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #d6dce5;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:16px;
+}
+
+button{
+    background:#0f4c81;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+button:hover{
+    background:#0d3f6a;
+}
+
+a{
+    display:inline-block;
+    margin-top:25px;
+    color:#0f4c81;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.counter-card{
+    background:#0f4c81;
+    color:white;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.counter-number{
+    font-size:40px;
+    font-weight:bold;
+}
+
+.operator-ticket{
+    font-size:50px;
+    color:#0f4c81;
+    margin:20px 0;
+}
+
+.empty{
+    color:#999;
+    font-size:20px;
+}
+
+.bank-footer{
+    margin-top:25px;
+    color:#777;
+    font-size:14px;
+}

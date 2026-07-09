@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>نوبت شما</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Smart Queue Management System
+    </div>
+
+    <h1>نوبت شما ثبت شد</h1>
+
+    <div class="ticket-number">
+        A-{{ ticket.ticket_number }}
+    </div>
+
+    <div class="status-box">
+
+        <h2>وضعیت صف</h2>
+
+        <div class="info">
+            افراد جلوتر از شما:
+            <span class="value" id="ahead">0</span>
+        </div>
+
+        <div class="info">
+            زمان انتظار:
+            <span class="value" id="time">0</span>
+            دقیقه
+        </div>
+
+    </div>
+
+    <a href="/">
+        بازگشت به صفحه اصلی
+    </a>
+
+</div>
+
+<script>
+const socket = new WebSocket(
+    "ws://127.0.0.1:8001/ws/queue/{{ ticket.ticket_number }}/"
+);
+
+socket.onmessage = function(event) {
+
+    const data = JSON.parse(event.data);
+
+    document.getElementById("time").innerText =
+        data.estimated_time;
+
+    document.getElementById("ahead").innerText =
+        data.people_ahead;
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>سیستم صف هوشمند</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Smart Queue Management System
+    </div>
+
+    <h1>سیستم نوبت‌دهی بانک</h1>
+
+    <div class="counter-card">
+        <div>تعداد افراد منتظر</div>
+        <div class="counter-number" id="waiting_count">0</div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="name"
+            placeholder="نام و نام خانوادگی">
+
+        <button type="submit">
+            دریافت نوبت
+        </button>
+    </form>
+
+    <div class="bank-footer">
+        لطفاً تا زمان فراخوانی نوبت در سالن انتظار بمانید.
+    </div>
+
+</div>
+
+<script>
+const socket = new WebSocket("ws://127.0.0.1:8001/ws/queue/global/");
+
+socket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    document.getElementById("waiting_count").innerText = data.waiting;
+};
+</script>
+
+</body>
+</html>
